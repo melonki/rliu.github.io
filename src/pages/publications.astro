@@ -24,11 +24,12 @@ const years = Object.keys(publicationsByYear).map(Number).sort((a, b) => b - a);
       <section class="publication-year-group" aria-labelledby={`year-${year}`}>
         <h2 id={`year-${year}`}>{year}</h2>
         <div class="publication-list">
-          {publicationsByYear[year].map((publication) => <PublicationItem publication={publication} />)}
+          {publicationsByYear[year].map((publication) => <PublicationItem publication={publication} showMetrics />)}
         </div>
       </section>
     ))}
   </div>
 
   <p class="publication-note">Riyang Liu is shown in bold. Equal-contribution status is included where stated in the CV.</p>
+  <script is:inline async src="https://integration-badge.dimensions.ai/static/ai/badge.js" charset="utf-8"></script>
 </BaseLayout>

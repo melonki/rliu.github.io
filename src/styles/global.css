@@ -449,6 +449,12 @@ main {
   margin-bottom: 0;
 }
 
+.publication-metrics {
+  display: inline-flex;
+  margin-left: 0.7rem;
+  vertical-align: middle;
+}
+
 .tag {
   display: inline-block;
   margin-left: 0.6rem;
@@ -707,6 +713,30 @@ main {
   font-weight: 600;
 }
 
+.service-subheading {
+  margin-bottom: 1rem;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+}
+
+.service-list {
+  columns: 2;
+  column-gap: 3rem;
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.service-list li {
+  break-inside: avoid;
+  margin-bottom: 0.35rem;
+  color: var(--graphite);
+}
+
+.presentation-link {
+  margin-top: 0.45rem;
+  font-weight: 600;
+}
+
 .cv-contact ul {
   display: flex;
   flex-wrap: wrap;
@@ -884,6 +914,10 @@ footer {
 
   .cv-header .button {
     margin: -2rem 0 0;
+  }
+
+  .service-list {
+    columns: 1;
   }
 
   .footer-inner {

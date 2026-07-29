@@ -1,7 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ScientificText from "../components/ScientificText.astro";
-import { appointments, conferencePresentations, education, professionalSummary, profile } from "../data/site";
+import {
+  appointments,
+  conferencePresentations,
+  education,
+  professionalSummary,
+  profile,
+  reviewingJournals,
+} from "../data/site";
 
 const base = import.meta.env.BASE_URL;
 ---
@@ -28,7 +35,16 @@ const base = import.meta.env.BASE_URL;
           <div>
             <h3>{appointment.institution}</h3>
             <p class="timeline-title">{appointment.title}</p>
-            <p>{appointment.context} · {appointment.location}</p>
+            <p>
+              {appointment.relationships.label}: {
+                appointment.relationships.people.map((person, index) => (
+                  <>
+                    {index > 0 && (index === appointment.relationships.people.length - 1 ? " and " : ", ")}
+                    <a href={person.url} target="_blank" rel="noreferrer">{person.name}</a>
+                  </>
+                ))
+              } · {appointment.location}
+            </p>
           </div>
         </article>
       ))}
@@ -44,11 +60,30 @@ const base = import.meta.env.BASE_URL;
           <div>
             <h3>{item.institution}</h3>
             <p class="timeline-title">{item.degree}</p>
-            {item.context && <p>{item.context}</p>}
+            {item.relationships && (
+              <p>
+                {item.relationships.label}: {
+                  item.relationships.people.map((person, index) => (
+                    <>
+                      {index > 0 && (index === item.relationships.people.length - 1 ? " and " : ", ")}
+                      <a href={person.url} target="_blank" rel="noreferrer">{person.name}</a>
+                    </>
+                  ))
+                }
+              </p>
+            )}
           </div>
         </article>
       ))}
     </div>
+  </section>
+
+  <section class="cv-section" aria-labelledby="service-heading">
+    <h2 id="service-heading">Professional service</h2>
+    <h3 class="service-subheading">Peer reviewer</h3>
+    <ul class="service-list">
+      {reviewingJournals.map((journal) => <li>{journal}</li>)}
+    </ul>
   </section>
 
   <section class="cv-section" aria-labelledby="presentations-heading">
@@ -58,13 +93,16 @@ const base = import.meta.env.BASE_URL;
         <article class="timeline-item">
           <div class="timeline-date">{presentation.date}</div>
           <div>
-            <h3>
-              {presentation.url ? (
-                <a href={presentation.url} target="_blank" rel="noreferrer"><ScientificText text={presentation.title} /></a>
-              ) : <ScientificText text={presentation.title} />}
-            </h3>
+            <h3><ScientificText text={presentation.title} /></h3>
             <p class="timeline-title">{presentation.event}</p>
             <p>{presentation.location} · {presentation.format}</p>
+            {presentation.material && (
+              <p class="presentation-link">
+                <a href={presentation.material.url} target="_blank" rel="noreferrer">
+                  {presentation.material.label} <span aria-hidden="true">↗</span>
+                </a>
+              </p>
+            )}
           </div>
         </article>
       ))}
@@ -77,6 +115,7 @@ const base = import.meta.env.BASE_URL;
       <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
       <li><a href={profile.scholar} target="_blank" rel="noreferrer">Google Scholar <span aria-hidden="true">↗</span></a></li>
       <li><a href={profile.orcid} target="_blank" rel="noreferrer">ORCID <span aria-hidden="true">↗</span></a></li>
+      <li><a href={profile.researchGate} target="_blank" rel="noreferrer">ResearchGate <span aria-hidden="true">↗</span></a></li>
       <li><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></li>
     </ul>
   </section>

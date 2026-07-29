@@ -5,10 +5,12 @@ import ScientificText from "./ScientificText.astro";
 interface Props {
   publication: Publication;
   compact?: boolean;
+  showMetrics?: boolean;
 }
 
-const { publication, compact = false } = Astro.props;
+const { publication, compact = false, showMetrics = false } = Astro.props;
 const authorParts = publication.authors.split(/(Liu, R\.)/g);
+const doi = publication.doi.replace(/^https?:\/\/(?:dx\.)?doi\.org\//, "");
 ---
 
 <article class:list={["publication", { "publication-compact": compact }]}>
@@ -23,5 +25,16 @@ const authorParts = publication.authors.split(/(Liu, R\.)/g);
     {publication.firstAuthor && <span class="tag">First author</span>}
     {publication.equalContribution && <span class="tag">Equal contribution</span>}
     {publication.note && <span class="tag">{publication.note}</span>}
+    {showMetrics && (
+      <span class="publication-metrics" aria-label={`Citation metrics for ${publication.title}`}>
+        <span
+          class="__dimensions_badge_embed__"
+          data-doi={doi}
+          data-style="small_rectangle"
+          data-legend="hover-right"
+          data-hide-zero-citations="true"
+        />
+      </span>
+    )}
   </p>
 </article>

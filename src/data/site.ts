@@ -8,6 +8,7 @@ export const profile = {
   email: "riyang.liu@duke.edu",
   scholar: "https://scholar.google.com/citations?user=Yt6f5LgAAAAJ&hl=en",
   orcid: "https://orcid.org/0000-0001-6520-3931",
+  researchGate: "https://www.researchgate.net/profile/Riyang-Liu",
   linkedin: "https://www.linkedin.com/in/riyang-liu-394aa184/",
 };
 
@@ -19,25 +20,60 @@ export const navigation = [
 ] as const;
 
 export const professionalSummary = [
-  "Riyang is a SCALES Postdoctoral Fellow at Duke University's Nicholas School of the Environment, where he works on the health impacts of climate change with a focus on heat exposure and human health.",
-  "His background is in geospatial and computational methods for environmental exposure assessment. At the Yale School of Public Health, he developed spatiotemporally resolved models for estimating population-level exposure to air pollutants and climate stressors, integrating remote sensing, big data, and atmospheric science knowledge. His work has been published in journals including Environmental Science & Technology, Remote Sensing of Environment, and Environment International.",
-  "At Duke, he is expanding into the heat and health space, particularly the link between environmental heat and physiological outcomes at the individual level. He is interested in building high-resolution heat exposure models and connecting them to health data to better understand how a warming climate translates into real human harm.",
+  "Riyang is a SCALES Postdoctoral Fellow at Duke University's Nicholas School of the Environment. His current work focuses on heat exposure and human health.",
+  "His research uses geospatial and computational methods for environmental exposure modeling and assessment, including spatiotemporally resolved models of air pollution and climate-related exposures.",
+  "He also studies environmental health and disparities by connecting environmental exposure estimates with population and health data.",
 ] as const;
 
 export const researchSummary = [
   {
-    title: "Health impacts of climate change",
-    text: professionalSummary[0],
-  },
-  {
-    title: "Environmental exposure assessment",
+    title: "Environmental exposure modeling and assessment",
     text: professionalSummary[1],
   },
   {
-    title: "Heat exposure and human health",
+    title: "Environmental health and disparity analysis",
     text: professionalSummary[2],
   },
+  {
+    title: "Heat exposure and human health",
+    text: professionalSummary[0],
+  },
 ] as const;
+
+const people = {
+  nishadJayasundara: {
+    name: "Nishad Jayasundara",
+    url: "https://scholars.duke.edu/person/Nishad.Jayasundara",
+  },
+  mercedesBravo: {
+    name: "Mercedes Bravo",
+    url: "https://globalhealth.duke.edu/people/bravo-mercedes",
+  },
+  liyinHe: {
+    name: "Liyin He",
+    url: "https://scholars.duke.edu/person/liyin.he",
+  },
+  heatherStapleton: {
+    name: "Heather Stapleton",
+    url: "https://scholars.duke.edu/person/heather.stapleton",
+  },
+  christinaWyatt: {
+    name: "Christina Wyatt",
+    url: "https://scholars.duke.edu/person/Christina.Wyatt",
+  },
+  kaiChen: {
+    name: "Kai Chen",
+    url: "https://ysph.yale.edu/superfund-research-center/profile/kai-chen/",
+  },
+  junBi: {
+    name: "Jun Bi",
+    url: "https://hjxy.nju.edu.cn/szdw/hjghyglx/js/20210604/i201770.html",
+  },
+  zongweiMa: {
+    name: "Zongwei Ma",
+    url: "https://hjxy.nju.edu.cn/szdw/hjghyglx/fjs/20210604/i201813.html",
+  },
+} as const;
 
 export const datasets = [
   {
@@ -66,21 +102,36 @@ export const appointments = [
     location: "Durham, North Carolina",
     title: "Postdoctoral Associate, Environmental Natural Sciences",
     dates: "Jul. 2026–current",
-    context: "Mentors: Drs. Nishad Jayasundar, Mercedes Bravo, Liyin He, Heather Stapleton, and Christina Wyatt",
+    relationships: {
+      label: "Mentors",
+      people: [
+        people.nishadJayasundara,
+        people.mercedesBravo,
+        people.liyinHe,
+        people.heatherStapleton,
+        people.christinaWyatt,
+      ],
+    },
   },
   {
     institution: "Yale University",
     location: "New Haven, Connecticut",
     title: "Postdoctoral Associate, Environmental Health Sciences",
     dates: "April 2024–June 2026",
-    context: "Advisor: Dr. Kai Chen",
+    relationships: {
+      label: "Advisor",
+      people: [people.kaiChen],
+    },
   },
   {
     institution: "Yale University",
     location: "New Haven, Connecticut",
     title: "Postgraduate Fellow, Environmental Health Sciences",
     dates: "February 2022–July 2022",
-    context: "Advisor: Dr. Kai Chen",
+    relationships: {
+      label: "Advisor",
+      people: [people.kaiChen],
+    },
   },
 ] as const;
 
@@ -89,20 +140,34 @@ export const education = [
     institution: "Nanjing University",
     degree: "Ph.D., Environmental Science and Engineering",
     dates: "Sep. 2019–Mar. 2024",
-    context: "Advisors: Drs. Jun Bi & Zongwei Ma",
+    relationships: {
+      label: "Advisors",
+      people: [people.junBi, people.zongweiMa],
+    },
   },
   {
     institution: "Nanjing University",
     degree: "Master of Engineering, Environmental Management",
     dates: "Aug. 2016–Jun. 2019",
-    context: undefined,
+    relationships: undefined,
   },
   {
     institution: "Xiamen University",
     degree: "Bachelor of Science, Environmental Science",
     dates: "Sep. 2012–Jul. 2016",
-    context: undefined,
+    relationships: undefined,
   },
+] as const;
+
+export const reviewingJournals = [
+  "Science Advances",
+  "Nature Communications",
+  "Journal of Hazardous Materials",
+  "Science of the Total Environment",
+  "GeoHealth",
+  "Journal of Exposure Science & Environmental Epidemiology",
+  "Environmental Pollution",
+  "Environmental Research",
 ] as const;
 
 export const conferencePresentations = [
@@ -112,7 +177,7 @@ export const conferencePresentations = [
     location: "New Haven, USA",
     date: "May 2026",
     format: "Poster presentation",
-    url: undefined,
+    material: undefined,
   },
   {
     title: "Four-decade (1980–2023) Surface Ozone Concentrations across the Contiguous United States: Fine-Resolution Estimates and Health Implications",
@@ -120,7 +185,10 @@ export const conferencePresentations = [
     location: "Virtual",
     date: "Apr. 2026",
     format: "Invited lightning talk",
-    url: undefined,
+    material: {
+      label: "Watch recording",
+      url: "https://www.youtube.com/watch?v=8YcUBxY3kv8&t=18015s",
+    },
   },
   {
     title: "Four-decade (1980–2023) Surface Ozone Concentrations across the Contiguous United States: Fine-Resolution Estimates and Health Implications",
@@ -128,7 +196,7 @@ export const conferencePresentations = [
     location: "New Orleans, USA",
     date: "Dec. 2025",
     format: "Oral presentation",
-    url: undefined,
+    material: undefined,
   },
   {
     title: "Racial and Ethnic Disparities in Exposure to Short-Term NO2 Air Pollution in California During 1980–2022",
@@ -136,7 +204,7 @@ export const conferencePresentations = [
     location: "Washington, D.C., USA",
     date: "Dec. 2024",
     format: "Oral presentation",
-    url: undefined,
+    material: undefined,
   },
   {
     title: "Spatiotemporal patterns of ground ozone levels in China from 2005 to 2019: a machine learning approach",
@@ -144,7 +212,7 @@ export const conferencePresentations = [
     location: "Nanjing, China",
     date: "May 2021",
     format: "Oral presentation, first prize",
-    url: undefined,
+    material: undefined,
   },
   {
     title: "Spatiotemporal distribution of ground ozone levels in China from 2005 to 2016: a machine learning approach",
@@ -152,6 +220,6 @@ export const conferencePresentations = [
     location: "Beijing, China",
     date: "Oct. 2019",
     format: "Poster presentation",
-    url: undefined,
+    material: undefined,
   },
 ] as const;
