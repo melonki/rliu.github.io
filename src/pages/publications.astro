@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PublicationItem from "../components/PublicationItem.astro";
+import { profile } from "../data/site";
+import { publicationsByYear } from "../data/publications";
+
+const years = Object.keys(publicationsByYear).map(Number).sort((a, b) => b - a);
+---
+
+<BaseLayout
+  title="Publications"
+  currentPath="publications/"
+  description="Peer-reviewed publications by Riyang Liu in environmental exposure science, air pollution, climate, and health."
+>
+  <header class="page-header publication-page-header">
+    <p class="eyebrow">Publications</p>
+    <h1>Peer-reviewed research</h1>
+    <p class="page-lede">Work spanning environmental exposure modeling, air quality, health applications, and policy-relevant environmental research.</p>
+    <p class="header-link"><a href={profile.scholar} target="_blank" rel="noreferrer">View Google Scholar profile <span aria-hidden="true">↗</span></a></p>
+  </header>
+
+  <div class="publication-years">
+    {years.map((year) => (
+      <section class="publication-year-group" aria-labelledby={`year-${year}`}>
+        <h2 id={`year-${year}`}>{year}</h2>
+        <div class="publication-list">
+          {publicationsByYear[year].map((publication) => <PublicationItem publication={publication} />)}
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <p class="publication-note">Riyang Liu is shown in bold. Equal-contribution status is included where stated in the CV.</p>
+</BaseLayout>

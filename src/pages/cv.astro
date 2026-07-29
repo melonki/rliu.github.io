@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ScientificText from "../components/ScientificText.astro";
+import { appointments, conferencePresentations, education, professionalSummary, profile } from "../data/site";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="CV"
+  currentPath="cv/"
+  description="Curriculum vitae and academic background for Riyang Liu, SCALES Postdoctoral Fellow at Duke University."
+>
+  <header class="page-header cv-header">
+    <div>
+      <h1>Curriculum vitae</h1>
+      <p class="page-lede">{professionalSummary[0]}</p>
+    </div>
+    <a class="button button-primary" href={`${base}files/Riyang-Liu-CV.pdf`}>Download CV (PDF)</a>
+  </header>
+
+  <section class="cv-section" aria-labelledby="appointments-heading">
+    <h2 id="appointments-heading">Appointments</h2>
+    <div class="timeline-list">
+      {appointments.map((appointment) => (
+        <article class="timeline-item">
+          <div class="timeline-date">{appointment.dates}</div>
+          <div>
+            <h3>{appointment.institution}</h3>
+            <p class="timeline-title">{appointment.title}</p>
+            <p>{appointment.context} · {appointment.location}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="cv-section" aria-labelledby="education-heading">
+    <h2 id="education-heading">Education</h2>
+    <div class="timeline-list">
+      {education.map((item) => (
+        <article class="timeline-item">
+          <div class="timeline-date">{item.dates}</div>
+          <div>
+            <h3>{item.institution}</h3>
+            <p class="timeline-title">{item.degree}</p>
+            {item.context && <p>{item.context}</p>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="cv-section" aria-labelledby="presentations-heading">
+    <h2 id="presentations-heading">Conference presentations</h2>
+    <div class="timeline-list">
+      {conferencePresentations.map((presentation) => (
+        <article class="timeline-item">
+          <div class="timeline-date">{presentation.date}</div>
+          <div>
+            <h3>
+              {presentation.url ? (
+                <a href={presentation.url} target="_blank" rel="noreferrer"><ScientificText text={presentation.title} /></a>
+              ) : <ScientificText text={presentation.title} />}
+            </h3>
+            <p class="timeline-title">{presentation.event}</p>
+            <p>{presentation.location} · {presentation.format}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="cv-section cv-contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Profiles and contact</h2>
+    <ul>
+      <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
+      <li><a href={profile.scholar} target="_blank" rel="noreferrer">Google Scholar <span aria-hidden="true">↗</span></a></li>
+      <li><a href={profile.orcid} target="_blank" rel="noreferrer">ORCID <span aria-hidden="true">↗</span></a></li>
+      <li><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></li>
+    </ul>
+  </section>
+</BaseLayout>

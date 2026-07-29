@@ -1,0 +1,27 @@
+---
+import type { Publication } from "../data/publications";
+import ScientificText from "./ScientificText.astro";
+
+interface Props {
+  publication: Publication;
+  compact?: boolean;
+}
+
+const { publication, compact = false } = Astro.props;
+const authorParts = publication.authors.split(/(Liu, R\.)/g);
+---
+
+<article class:list={["publication", { "publication-compact": compact }]}>
+  <div class="publication-heading">
+    <h3><a href={publication.doi} target="_blank" rel="noreferrer"><ScientificText text={publication.title} /></a></h3>
+  </div>
+  <p class="publication-authors">
+    {authorParts.map((part) => part === "Liu, R." ? <strong>{part}</strong> : part)}
+  </p>
+  <p class="publication-meta">
+    <em>{publication.venue}</em>{publication.details && `, ${publication.details}`}
+    {publication.firstAuthor && <span class="tag">First author</span>}
+    {publication.equalContribution && <span class="tag">Equal contribution</span>}
+    {publication.note && <span class="tag">{publication.note}</span>}
+  </p>
+</article>

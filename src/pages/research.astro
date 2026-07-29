@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { professionalSummary, researchSummary } from "../data/site";
+---
+
+<BaseLayout
+  title="Research"
+  currentPath="research/"
+  description={professionalSummary[0]}
+>
+  <header class="page-header">
+    <h1>Research</h1>
+  </header>
+
+  <div class="research-prose">
+    {researchSummary.map((section) => (
+      <section>
+        <h2>{section.title}</h2>
+        <p>{section.text}</p>
+      </section>
+    ))}
+  </div>
+</BaseLayout>

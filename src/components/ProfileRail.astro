@@ -1,0 +1,35 @@
+---
+import { Picture } from "astro:assets";
+import headshot from "../assets/headshot.jpg";
+import { profile } from "../data/site";
+
+interface Props {
+  base: string;
+}
+
+const { base } = Astro.props;
+---
+
+<aside class="profile-rail" aria-label="Researcher profile">
+  <Picture
+    src={headshot}
+    formats={["avif", "webp"]}
+    widths={[220, 440]}
+    sizes="(min-width: 1024px) 220px, 180px"
+    alt={`Portrait of ${profile.name}`}
+    class="profile-photo"
+    loading="eager"
+  />
+  <div class="profile-copy">
+    <p class="profile-name">{profile.name}</p>
+    <p class="profile-role">{profile.role}</p>
+    <p class="profile-affiliation">{profile.school}<br />{profile.institution}</p>
+  </div>
+  <ul class="profile-links" aria-label="Profile links">
+    <li><a href={`mailto:${profile.email}`}>Email</a></li>
+    <li><a href={profile.scholar} target="_blank" rel="noreferrer">Google Scholar <span aria-hidden="true">↗</span></a></li>
+    <li><a href={profile.orcid} target="_blank" rel="noreferrer">ORCID <span aria-hidden="true">↗</span></a></li>
+    <li><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></li>
+    <li><a href={`${base}files/Riyang-Liu-CV.pdf`}>Download CV</a></li>
+  </ul>
+</aside>

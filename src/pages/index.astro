@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PublicationItem from "../components/PublicationItem.astro";
+import ScientificText from "../components/ScientificText.astro";
+import { datasets, professionalSummary } from "../data/site";
+import { featuredPublications } from "../data/publications";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  currentPath=""
+  description={professionalSummary[0]}
+>
+  <section class="home-introduction" aria-labelledby="about-heading">
+    <h1 id="about-heading">About</h1>
+    <div class="prose-copy">
+      {professionalSummary.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </section>
+
+  <section class="section-block" aria-labelledby="selected-work-heading">
+    <div class="section-intro section-intro-row">
+      <div>
+        <h2 id="selected-work-heading">Selected publications</h2>
+      </div>
+      <a href={`${base}publications/`}>All publications <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="publication-list featured-publications">
+      {featuredPublications.map((publication) => <PublicationItem publication={publication} compact />)}
+    </div>
+  </section>
+
+  <section class="section-block" aria-labelledby="data-heading">
+    <div class="section-intro">
+      <h2 id="data-heading">Open-access data products</h2>
+    </div>
+    <div class="dataset-list">
+      {datasets.map((dataset) => (
+        <article class="dataset-item">
+          <h3><a href={dataset.doi} target="_blank" rel="noreferrer"><ScientificText text={dataset.title} /></a></h3>
+          <p>Liu, Riyang; Kai Chen, {dataset.year}. Yale Dataverse, V1.</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

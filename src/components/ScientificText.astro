@@ -1,0 +1,16 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+const parts = text.split(/(PM2\.5|NO2|O3|CO2)/g);
+---
+
+{parts.map((part) => {
+  if (part === "PM2.5") return <>PM<sub>2.5</sub></>;
+  if (part === "NO2") return <>NO<sub>2</sub></>;
+  if (part === "O3") return <>O<sub>3</sub></>;
+  if (part === "CO2") return <>CO<sub>2</sub></>;
+  return part;
+})}

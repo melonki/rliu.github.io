@@ -1,0 +1,32 @@
+---
+import { navigation, profile } from "../data/site";
+
+interface Props {
+  currentPath: string;
+  base: string;
+}
+
+const { currentPath, base } = Astro.props;
+const url = (path: string) => `${base}${path}`;
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href={url("")} aria-label={`${profile.name}, home`}>
+      <span class="wordmark-name">{profile.name}</span>
+      <span class="wordmark-role">{profile.role}</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <ul class="nav-list">
+        {navigation.map((item) => {
+          const active = currentPath === item.href;
+          return (
+            <li>
+              <a href={url(item.href)} aria-current={active ? "page" : undefined}>{item.label}</a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  </div>
+</header>
