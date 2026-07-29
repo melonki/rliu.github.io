@@ -164,10 +164,12 @@ export const reviewingJournals = [
   "Nature Communications",
   "Journal of Hazardous Materials",
   "Science of the Total Environment",
+  "Sustainable Cities and Society",
   "GeoHealth",
   "Journal of Exposure Science & Environmental Epidemiology",
   "Environmental Pollution",
   "Environmental Research",
+  "Urban Climate",
 ] as const;
 
 export const conferencePresentations = [
