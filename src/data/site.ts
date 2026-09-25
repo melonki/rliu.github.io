@@ -14,6 +14,7 @@ export const profile = {
 };
 
 export const cvFile = "files/Riyang%20Liu_CV_Sep242026.pdf";
+export const eekhUrl = "https://medicine.duke.edu/education-and-training/fellowship-programs/nephrology-fellowship/training-and-curriculum-1";
 
 export const navigation = [
   { label: "Home", href: "" },
@@ -53,7 +54,7 @@ export const researchSummary = [
   {
     title: "Heat exposure and human health",
     paragraphs: [
-      "At Duke, Riyang is extending this exposure-to-health approach to heat. Working with the multidisciplinary Environmental Exposure and Kidney Health group, he is exploring how ambient and personal heat exposure can be linked with physiological measurements and cardio-kidney-metabolic health. As this work develops, his longer-term aim is to generate evidence that can inform practical heat adaptation for vulnerable populations.",
+      "At Duke, Riyang is extending this exposure-to-health approach to heat. Working with the multidisciplinary Environmental Exposures & Kidney Health group, he is exploring how ambient and personal heat exposure can be linked with physiological measurements and cardio-kidney-metabolic health. As this work develops, his longer-term aim is to generate evidence that can inform practical heat adaptation for vulnerable populations.",
     ],
   },
 ] as const;

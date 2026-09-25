@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ScientificText from "../components/ScientificText.astro";
-import { researchIntroduction, researchSummary } from "../data/site";
+import { eekhUrl, researchIntroduction, researchSummary } from "../data/site";
+
+const eekhName = "Environmental Exposures & Kidney Health";
 ---
 
 <BaseLayout
@@ -18,7 +20,20 @@ import { researchIntroduction, researchSummary } from "../data/site";
     {researchSummary.map((section) => (
       <section>
         <h2>{section.title}</h2>
-        {section.paragraphs.map((paragraph) => <p><ScientificText text={paragraph} /></p>)}
+        {section.paragraphs.map((paragraph) => {
+          const [beforeLink, afterLink] = paragraph.split(eekhName);
+          return <p>
+            {afterLink === undefined ? (
+              <ScientificText text={paragraph} />
+            ) : (
+              <>
+                <ScientificText text={beforeLink} />
+                <a href={eekhUrl} target="_blank" rel="noreferrer">{eekhName}</a>
+                <ScientificText text={afterLink} />
+              </>
+            )}
+          </p>;
+        })}
       </section>
     ))}
   </div>
