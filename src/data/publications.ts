@@ -31,7 +31,7 @@ export const publications: Publication[] = [
   },
   {
     year: 2025,
-    title: "Effects of hypothetical PM2.5 intervention on the risk of hospitalization for cardiovascular diseases",
+    title: "A Hypothetical PM2.5 Intervention for the Risk of Hospitalization for Cardiovascular Diseases",
     authors: "Lin, C.; Chu, L.; Liu, R.; Gasparrini, A.; DeWan, A. T.; Forastiere, L.; Chen, K.",
     venue: "JAMA Network Open",
     doi: "https://doi.org/10.1001/jamanetworkopen.2025.39862",

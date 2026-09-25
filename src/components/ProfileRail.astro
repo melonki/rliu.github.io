@@ -1,7 +1,7 @@
 ---
 import { Picture } from "astro:assets";
 import headshot from "../assets/headshot.jpg";
-import { profile } from "../data/site";
+import { cvFile, profile } from "../data/site";
 
 interface Props {
   base: string;
@@ -24,6 +24,13 @@ const { base } = Astro.props;
     <p class="profile-name">{profile.name}</p>
     <p class="profile-role">{profile.role}</p>
     <p class="profile-affiliation">{profile.school}<br />{profile.institution}</p>
+    <p class="profile-location">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M12 2a8 8 0 0 0-8 8c0 5.4 8 12 8 12s8-6.6 8-12a8 8 0 0 0-8-8Z" />
+        <circle cx="12" cy="10" r="2.6" fill="white" />
+      </svg>
+      <span>Durham, North Carolina</span>
+    </p>
   </div>
   <ul class="profile-links" aria-label="Profile links">
     <li><a href={`mailto:${profile.email}`}>Email</a></li>
@@ -31,6 +38,6 @@ const { base } = Astro.props;
     <li><a href={profile.orcid} target="_blank" rel="noreferrer">ORCID <span aria-hidden="true">↗</span></a></li>
     <li><a href={profile.researchGate} target="_blank" rel="noreferrer">ResearchGate <span aria-hidden="true">↗</span></a></li>
     <li><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></li>
-    <li><a href={`${base}files/Riyang-Liu-CV.pdf`}>Download CV</a></li>
+    <li><a href={`${base}${cvFile}`}>Download CV</a></li>
   </ul>
 </aside>

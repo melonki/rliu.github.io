@@ -3,10 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ScientificText from "../components/ScientificText.astro";
 import {
   appointments,
+  cvFile,
   conferencePresentations,
   education,
-  professionalSummary,
-  profile,
   reviewingJournals,
 } from "../data/site";
 
@@ -16,14 +15,13 @@ const base = import.meta.env.BASE_URL;
 <BaseLayout
   title="CV"
   currentPath="cv/"
-  description="Curriculum vitae and academic background for Riyang Liu, SCALES Postdoctoral Fellow at Duke University."
+  description="Curriculum vitae and academic background for Riyang Liu at Duke University."
 >
   <header class="page-header cv-header">
     <div>
       <h1>Curriculum vitae</h1>
-      <p class="page-lede">{professionalSummary[0]}</p>
     </div>
-    <a class="button button-primary" href={`${base}files/Riyang-Liu-CV.pdf`}>Download CV (PDF)</a>
+    <a class="button button-primary" href={`${base}${cvFile}`}>Download CV (PDF)</a>
   </header>
 
   <section class="cv-section" aria-labelledby="appointments-heading">
@@ -109,14 +107,4 @@ const base = import.meta.env.BASE_URL;
     </div>
   </section>
 
-  <section class="cv-section cv-contact" aria-labelledby="contact-heading">
-    <h2 id="contact-heading">Profiles and contact</h2>
-    <ul>
-      <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
-      <li><a href={profile.scholar} target="_blank" rel="noreferrer">Google Scholar <span aria-hidden="true">↗</span></a></li>
-      <li><a href={profile.orcid} target="_blank" rel="noreferrer">ORCID <span aria-hidden="true">↗</span></a></li>
-      <li><a href={profile.researchGate} target="_blank" rel="noreferrer">ResearchGate <span aria-hidden="true">↗</span></a></li>
-      <li><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></li>
-    </ul>
-  </section>
 </BaseLayout>

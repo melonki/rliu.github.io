@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PublicationItem from "../components/PublicationItem.astro";
-import { profile } from "../data/site";
 import { publicationsByYear } from "../data/publications";
 
 const years = Object.keys(publicationsByYear).map(Number).sort((a, b) => b - a);
@@ -12,11 +11,8 @@ const years = Object.keys(publicationsByYear).map(Number).sort((a, b) => b - a);
   currentPath="publications/"
   description="Peer-reviewed publications by Riyang Liu in environmental exposure science, air pollution, climate, and health."
 >
-  <header class="page-header publication-page-header">
-    <p class="eyebrow">Publications</p>
-    <h1>Peer-reviewed research</h1>
-    <p class="page-lede">Work spanning environmental exposure modeling, air quality, health applications, and policy-relevant environmental research.</p>
-    <p class="header-link"><a href={profile.scholar} target="_blank" rel="noreferrer">View Google Scholar profile <span aria-hidden="true">↗</span></a></p>
+  <header class="page-header">
+    <h1>Publications</h1>
   </header>
 
   <div class="publication-years">
@@ -30,6 +26,5 @@ const years = Object.keys(publicationsByYear).map(Number).sort((a, b) => b - a);
     ))}
   </div>
 
-  <p class="publication-note">Riyang Liu is shown in bold. Equal-contribution status is included where stated in the CV.</p>
   <script is:inline async src="https://integration-badge.dimensions.ai/static/ai/badge.js" charset="utf-8"></script>
 </BaseLayout>

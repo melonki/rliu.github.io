@@ -2,20 +2,21 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PublicationItem from "../components/PublicationItem.astro";
 import ScientificText from "../components/ScientificText.astro";
-import { datasets, professionalSummary } from "../data/site";
+import { approvedBio, datasets, profile } from "../data/site";
 import { featuredPublications } from "../data/publications";
 
 const base = import.meta.env.BASE_URL;
+const [bioBeforeRole, bioAfterRole] = approvedBio.split(profile.role);
 ---
 
 <BaseLayout
   currentPath=""
-  description={professionalSummary[0]}
+  description={approvedBio}
 >
   <section class="home-introduction" aria-labelledby="about-heading">
     <h1 id="about-heading">About</h1>
     <div class="prose-copy">
-      {professionalSummary.map((paragraph) => <p>{paragraph}</p>)}
+      <p>{bioBeforeRole}<a href={profile.scalesUrl} target="_blank" rel="noreferrer">{profile.role}</a>{bioAfterRole}</p>
     </div>
   </section>
 

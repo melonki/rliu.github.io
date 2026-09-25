@@ -12,10 +12,9 @@ const url = (path: string) => `${base}${path}`;
 
 <header class="site-header">
   <div class="header-inner">
-    <a class="wordmark" href={url("")} aria-label={`${profile.name}, home`}>
-      <span class="wordmark-name">{profile.name}</span>
-      <span class="wordmark-role">{profile.role}</span>
-    </a>
+    <div class="wordmark">
+      <a class="wordmark-name" href={url("")} aria-label={`${profile.name}, home`}>{profile.name}</a>
+    </div>
     <nav aria-label="Primary navigation">
       <ul class="nav-list">
         {navigation.map((item) => {

@@ -1,22 +1,24 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { professionalSummary, researchSummary } from "../data/site";
+import ScientificText from "../components/ScientificText.astro";
+import { researchIntroduction, researchSummary } from "../data/site";
 ---
 
 <BaseLayout
   title="Research"
   currentPath="research/"
-  description={professionalSummary[0]}
+  description={researchIntroduction[0]}
 >
   <header class="page-header">
     <h1>Research</h1>
+    <p class="page-lede">{researchIntroduction.join(" ")}</p>
   </header>
 
   <div class="research-prose">
     {researchSummary.map((section) => (
       <section>
         <h2>{section.title}</h2>
-        <p>{section.text}</p>
+        {section.paragraphs.map((paragraph) => <p><ScientificText text={paragraph} /></p>)}
       </section>
     ))}
   </div>
